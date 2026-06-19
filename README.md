@@ -78,7 +78,7 @@ This keeps all cards visually aligned and improves the overall user experience.
 Clone the repository:
 
 ```bash
-git clone 
+git clone https://github.com/sherlock13b/e-commerce.git
 ```
 
 Navigate to the project folder:
@@ -112,6 +112,7 @@ http://localhost:3000
 
 ```
 ```
+<img width="1902" height="908" alt="image" src="https://github.com/user-attachments/assets/01a516f2-df5c-4ad8-a49b-84900f94d403" />
 
 ---
 
