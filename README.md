@@ -1,46 +1,130 @@
-# Getting Started with Create React App
+# 🛒 Dynamic Product Catalog
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A responsive product catalog built with **React**, **TypeScript**, and **Axios**. The application fetches product data from the Fake Store API and displays it in a clean, responsive grid layout. Users can filter products by category and sort them by price.
 
-## Available Scripts
+This project was built to practice working with API integration, React Hooks, TypeScript, component-based architecture, and responsive layouts using CSS Grid and Flexbox.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🚀 Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* Fetches live product data from the Fake Store API
+* Filter products by category
+* Sort products by price (Low to High / High to Low)
+* Responsive layout for desktop, tablet, and mobile devices
+* Built with reusable React components
+* Strong type safety using TypeScript
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
 
-### `npm test`
+## 🛠️ Tech Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* React
+* TypeScript
+* Axios
+* CSS3 (Grid & Flexbox)
+* Fake Store API
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📁 Project Structure
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+src/
+├── components/
+│   ├── FilterToolbar.tsx
+│   └── ProductCard.tsx
+├── types/
+│   └── index.ts
+├── App.tsx
+├── App.css
+└── index.tsx
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 💡 Implementation Details
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Responsive Grid Layout
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The product list uses **CSS Grid** to automatically adjust the number of columns based on the available screen width.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```css
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 30px;
+}
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+This approach creates a responsive layout without writing multiple media queries.
 
-## Learn More
+### Consistent Card Layout
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Each product card is built using **Flexbox**, allowing the price section to stay aligned at the bottom even when product descriptions have different lengths.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```css
+.price-tag {
+  margin-top: auto;
+}
+```
+
+This keeps all cards visually aligned and improves the overall user experience.
+
+---
+
+## ▶️ Getting Started
+
+Clone the repository:
+
+```bash
+git clone 
+```
+
+Navigate to the project folder:
+
+```bash
+cd your-repository
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm start
+```
+
+The application will run locally at:
+
+```
+http://localhost:3000
+```
+
+---
+
+## 📸 Screenshot
+
+
+```
+```
+
+---
+
+## 🎯 Future Improvements
+
+* Add product search functionality
+* Add pagination or infinite scrolling
+* Add product details page
+* Implement shopping cart functionality
+* Add loading skeletons and improved error handling
+
+---
+
+## 📄 License
+
+This project is available for learning and personal use.
