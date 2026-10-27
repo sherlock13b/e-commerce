@@ -15,7 +15,7 @@ function App() {
   const categories = ['all', "electronics", "jewelery", "men's clothing", "women's clothing"];
 
   useEffect(() => {
-    axios.get<Product[]>('https://fakestoreapi.com/products')
+       axios.get<Product[]>('/api/products')
       .then((response) => {
         setProducts(response.data);
         setFilteredProducts(response.data);
@@ -55,14 +55,13 @@ function App() {
         <h1>Online Product Catalog</h1>
         <p>A simple product catalog fetching live data using React, TypeScript, and Axios</p>
       </header>
-
-      <FilterToolbar
-        categories={categories}
-        selectedCategory={selectedCategory}
-        activeSort={activeSort}
-        onCategoryChange={setSelectedCategory}
-        onSortChange={setActiveSort}
-      />
+   <FilterToolbar
+     categories={categories}
+     selectedCategory={selectedCategory}
+     activeSort={activeSort}
+     onCategoryChange={setSelectedCategory}
+     onSortChange={setActiveSort}
+   />
 
       <main className="products-grid">
         {filteredProducts.map((product) => (
