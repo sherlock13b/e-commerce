@@ -54,3 +54,33 @@ jobs:
 
       - name: Push image
         run: docker push ${{ steps.login.outputs.registry }}/devops-final/${{ matrix.name }}:${{ github.sha }}
+
+          deploy-review:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        service: [frontend, backend]
+    steps:
+      - name: Assume AWS role (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::388260576890:role/devops-final-review-github-deploy
+          aws-region: ap-south-1
+
+      - name: Deploy ${{ matrix.service }} to review
+        env:
+          CLUSTER: devops-final-review-cluster
+          SERVICE: devops-final-review-${{ matrix.service }}
+          IMAGE: 388260576890.dkr.ecr.ap-south-1.amazonaws.com/devops-final/${{ matrix.service }}:${{ github.sha }}
+        run: |
+          set -euo pipefail
+          aws ecs describe-task-definition --task-definition "$SERVICE" --query taskDefinition > td.json
+          jq --arg IMAGE "$IMAGE" '.containerDefinitions[0].image = $IMAGE
+            | del(.taskDefinitionArn, .revision, .status, .requiresAttributes, .compatibilities, .registeredAt, .registeredBy)' td.json > new-td.json
+          NEW_ARN=$(aws ecs register-task-definition --cli-input-json file://new-td.json --query taskDefinition.taskDefinitionArn --output text)
+          echo "Registered $NEW_ARN"
+          aws ecs update-service --cluster "$CLUSTER" --service "$SERVICE" --task-definition "$NEW_ARN" > /dev/null
+          aws ecs wait services-stable --cluster "$CLUSTER" --services "$SERVICE"
+          echo "$SERVICE is stable"
