@@ -52,7 +52,7 @@ function App() {
   return (
     <div className="app-container">
       <header className="main-header">
-        <h1>Online Product Catalog</h1>
+        <h1>Online Product Catalog ... v2</h1>
         <p>A simple product catalog fetching live data using React, TypeScript, and Axios</p>
       </header>
    <FilterToolbar
