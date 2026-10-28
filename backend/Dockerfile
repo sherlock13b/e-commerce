@@ -9,6 +9,7 @@ RUN npm install --omit=dev
 FROM node:20-alpine
 ENV NODE_ENV=production
 WORKDIR /app
+RUN rm -rf /usr/local/lib/node_modules/npm /usr/local/bin/npm /usr/local/bin/npx
 COPY --from=deps /app/node_modules ./node_modules
 COPY package.json ./
 COPY src ./src
