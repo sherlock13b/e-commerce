@@ -54,8 +54,7 @@ jobs:
 
       - name: Push image
         run: docker push ${{ steps.login.outputs.registry }}/devops-final/${{ matrix.name }}:${{ github.sha }}
-
-          deploy-review:
+  deploy-review:
     needs: build-and-push
     runs-on: ubuntu-latest
     strategy:
