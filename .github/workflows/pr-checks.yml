@@ -46,7 +46,7 @@ jobs:
         run: docker build -t ecommerce-${{ matrix.name }}:pr -f ${{ matrix.file }} ${{ matrix.context }}
 
       - name: Trivy scan
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: ecommerce-${{ matrix.name }}:pr
           severity: CRITICAL,HIGH
