@@ -45,10 +45,6 @@ function createApp({ repo, corsOrigin = '*', collectDefaultMetrics = false }) {
   // Liveness: is the process up? Never touches the database. The ALB health
   // check uses this path, so a database outage doesn't get containers killed.
   app.get('/api/health', (req, res) => {
-    // GAME DAY DRILL: fail only inside ECS (CI/laptop unaffected). Revert after the drill.
-    if (process.env.ECS_CONTAINER_METADATA_URI_V4) {
-      return res.status(500).json({ status: 'broken' });
-    }
     res.json({ status: 'ok' });
   });
 
